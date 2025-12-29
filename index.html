@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Gift</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, #5a0f1b, #2b0008);
+  font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 18px;
+  animation: floatUp 8s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 0.6; }
+  to { transform: translateY(-110vh); opacity: 0; }
+}
+
+.card {
+  background: linear-gradient(135deg, #7a1425, #3a000c);
+  color: #fff5f7;
+  width: 500px;
+  min-height: 460px;
+  padding: 45px;
+  border-radius: 34px;
+  box-shadow: 0 25px 55px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  animation: fadeIn 0.8s ease;
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 30px;
+  letter-spacing: 1.5px;
+  color: #ffe3e8;
+}
+
+p {
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 350px;
+}
+
+ul li {
+  margin-bottom: 14px;
+}
+
+ul li::before {
+  content: "❣️ ";
+}
+
+.buttons {
+  margin-top: 25px;
+}
+
+button {
+  margin: 10px;
+  padding: 13px 30px;
+  border: none;
+  border-radius: 40px;
+  font-size: 15px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #fff0f3, #ffd6dd);
+  color: #5a0f1b;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+.hidden { display: none; }
+
+iframe {
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+/* Progress dots */
+.progress {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+}
+
+.dot.active {
+  background: #ffd6dd;
+}
+
+/* Music toggle */
+.music-toggle {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating Hearts -->
+<script>
+for (let i = 0; i < 20; i++) {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDelay = Math.random() * 8 + "s";
+  heart.innerHTML = "❤️";
+  document.body.appendChild(heart);
+}
+</script>
+
+<!-- PAGE 1 -->
+<div class="card" id="page1">
+  <div class="progress">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+  <div>
+    <h1>🎉 Hi Baby, Happy Birthday 🎉</h1>
+    <p>
+      Today is yours — every smile, every moment 💗  
+      <br><br>
+      Do you want to see your little birthday gift?
+    </p>
+  </div>
+  <div class="buttons">
+    <button onclick="showPage('page2',1)">Agree 💖</button>
+    <button onclick="tryAgain()">Disagree 🙈</button>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="card hidden" id="page2">
+  <div class="progress">
+    <div class="dot"></div>
+    <div class="dot active"></div>
+    <div class="dot"></div>
+  </div>
+  <div>
+    <h1>🎀 Choose Your Gift 🎀</h1>
+    <p>Each choice holds a piece of my heart 💞</p>
+  </div>
+  <div class="buttons">
+    <button onclick="showPage('sweet',2)">🎂 Sweet Surprise</button>
+    <button onclick="showPage('cute',2)">🎶 Cute Gift</button>
+    <button onclick="showPage('message',2)">💌 Special Message</button>
+  </div>
+</div>
+
+<!-- SWEET -->
+<div class="card hidden" id="sweet">
+  <h1>💞 Reasons I Love You 💞</h1>
+  <ul>
+    <li>You feel like home.</li>
+    <li>You love me gently.</li>
+    <li>You show up consistently.</li>
+    <li>You see me fully.</li>
+  </ul>
+  <div class="buttons">
+    <button onclick="showPage('page2',1)">⬅ Back</button>
+  </div>
+</div>
+
+<!-- CUTE -->
+<div class="card hidden" id="cute">
+  <h1>🎵 A Song for You 🎵</h1>
+  <p>Let this melody hold my feelings for you 💗</p>
+  <iframe width="100%" height="235"
+    src="https://www.youtube.com/embed/2Vv-BfVoq4g"
+    allowfullscreen></iframe>
+  <div class="buttons">
+    <button onclick="showPage('page2',1)">⬅ Back</button>
+  </div>
+</div>
+
+<!-- MESSAGE -->
+<div class="card hidden" id="message">
+  <h1>💖 Happy Birthday My Love 💖</h1>
+  <p>
+    Loving you feels steady, warm, and right.  
+    Thank you for being exactly who you are.
+    <br><br>
+    May this year bring softness, joy, and reminders  
+    of how deeply you are cherished 🎂✨
+  </p>
+  <div class="buttons">
+    <button onclick="showPage('page2',1)">⬅ Back</button>
+  </div>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+
+function tryAgain() {
+  alert("Aww 😢 Try again, please 💕");
+}
+</script>
+
+</body>
+</html>
